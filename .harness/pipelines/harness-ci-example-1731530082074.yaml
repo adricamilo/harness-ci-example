@@ -1,0 +1,53 @@
+pipeline:
+  identifier: Build_adricamilo_harness_ci_example_1731530095514
+  name: Build harness-ci-example
+  orgIdentifier: default
+  projectIdentifier: helloworld
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.Github
+        repoName: adricamilo/harness-ci-example
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          caching:
+            enabled: true
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: installdependencies
+                  name: install dependencies
+                  spec:
+                    command: npm install
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: test
+                  name: test
+                  spec:
+                    command: npm run test
+                  timeout: ""
+                  type: Run
+              - step:
+                  identifier: dockerbuild
+                  name: docker_build
+                  spec:
+                    caching: true
+                    connectorRef: <+input>
+                    repo: hello/world
+                    tags:
+                      - latest
+                  timeout: ""
+                  type: BuildAndPushDockerRegistry
+          platform:
+            arch: Arm64
+            os: MacOS
+          runtime:
+            spec: {}
+            type: Docker
+        type: CI
