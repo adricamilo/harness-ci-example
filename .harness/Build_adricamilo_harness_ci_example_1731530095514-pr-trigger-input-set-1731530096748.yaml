@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_adricamilo_harness_ci_example_1731530095514-pr-trigger-input-set
+  identifier: Build_adricamilo_harness_ci_example_1731530095514prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: helloworld
+  pipeline:
+    identifier: Build_adricamilo_harness_ci_example_1731530095514
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
