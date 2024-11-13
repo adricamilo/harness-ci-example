@@ -30,24 +30,27 @@ pipeline:
                   identifier: test
                   name: test
                   spec:
-                    command: npm run test
+                    connectorRef: account.harnessImage
+                    image: node:16
+                    shell: Sh
+                    command: npm test
                   timeout: ""
                   type: Run
               - step:
                   identifier: dockerbuild
                   name: docker_build
                   spec:
-                    caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
+                    connectorRef: account.harnessImage
+                    repo: adricamilo/hello-world
                     tags:
-                      - latest
+                      - "1.0"
+                    caching: true
                   timeout: ""
                   type: BuildAndPushDockerRegistry
           platform:
-            arch: Arm64
             os: MacOS
+            arch: Arm64
           runtime:
-            spec: {}
             type: Docker
+            spec: {}
         type: CI
