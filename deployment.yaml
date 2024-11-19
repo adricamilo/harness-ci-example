@@ -15,7 +15,7 @@ spec:
         app: hello-app
     spec:
       containers:
-      - image: <+artifacts.build.imagePath>
+      - image: {{.Values.image}}
         name: hello-app
         ports:
         - containerPort: 3007
