@@ -15,7 +15,7 @@ spec:
         app: hello-app
     spec:
       containers:
-      - image: adricamilo/hello-world:<+pipeline.sequenceId>
+      - image: <+artifacts.build.imagePath>
         name: hello-app
         ports:
         - containerPort: 3007
