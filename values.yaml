@@ -1,1 +1,1 @@
-image: <+artifact.image>
+image: adricamilo/hello-world:<+pipeline.sequenceId>
